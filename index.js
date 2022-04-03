@@ -1,8 +1,8 @@
 const fs = require('fs')
 const csv = require('csv-parser')
-const fullPlayersFile = 'players.csv'
-const shortPlayersFile = 'short_players.csv'
-const heroNamesFile = 'hero_names.csv'
+const fullPlayersFile = 'data/players.csv'
+const shortPlayersFile = 'data/short_players.csv'
+const heroNamesFile = 'data/hero_names.csv'
 
 
 // const data = fs.readFileSync('players.csv', err => {
