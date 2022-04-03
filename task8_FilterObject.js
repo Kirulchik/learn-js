@@ -5,7 +5,8 @@ function filterByPriceIds(smartphones, filter){
     for(let smartphone of smartphones){
         let id = smartphone.id
         // price
-        if(typeof filter.price !== 'undefined') {
+        if(typeof filter.price !== 'undefined') { // проверяем есть ли поле прайс в объекте фильтр
+            // далее проверяем попадает ли в диапазон фильтра цена текущего смартофона
             if(typeof filter.price.min !== 'undefined' && smartphone.price < filter.price.min){
                 continue
             }
@@ -26,6 +27,7 @@ function filterByPriceIds(smartphones, filter){
         // АА0766
         if(typeof filter.vendor_codes !== 'undefined') {
             let foundVendorCode = false
+            // проверяем входил ли артикул в список артикулей в фильтре
             for (let code of filter.vendor_codes) {
                 if (code === smartphone.vendor_code) {
                     foundVendorCode = true
@@ -52,7 +54,7 @@ function filterByPriceIds(smartphones, filter){
         }
         // date
         if(typeof filter.created_at !== 'undefined') {
-            let createdAt = Date.parse(smartphone.created_at)
+            let createdAt = Date.parse(smartphone.created_at) // из строки делаем объект времени
             if (typeof filter.created_at.from !== 'undefined' && createdAt < Date.parse(filter.created_at.from)){
                 continue
             }
@@ -60,7 +62,7 @@ function filterByPriceIds(smartphones, filter){
                 continue
             }
         }
-        ids.push(id)
+        ids.push(id) //добавляем в результирующий массив ид смартфона подходящего под все фильры
     }
     return ids
 }
