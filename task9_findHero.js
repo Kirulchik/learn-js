@@ -1,22 +1,11 @@
 const fs = require('fs')
 const csv = require('csv-parser')
+const readFromFile = require('./read_from_file') // импортирование функции
 const fullPlayersFile = 'data/players.csv' // полный сsv
 const shortPlayersFile = 'data/short_players.csv' // короткий csv для проверки
-const heroNamesFile = 'data/hero_names.csv'
+const heroNamesFile = 'data/hero_names.csv';
 
-//Вова шото натворил(сделал синхронное выполнение с помощья своей магии
-let readFromFile = async (fileName, separator) => {
-    let result = []
-    return new Promise(function (resolve, reject) {
-        fs.createReadStream(fileName)
-            .pipe(csv({ separator:separator}))
-            .on('data', (data) => result.push(data))
-            .on('end', () => {
-                resolve(result)
-            })
-            .on('error', reject);
-    });
-}
+
 (async function() {
     const players = await readFromFile(fullPlayersFile, ";")
     const heroNames = await readFromFile(heroNamesFile, ",")
